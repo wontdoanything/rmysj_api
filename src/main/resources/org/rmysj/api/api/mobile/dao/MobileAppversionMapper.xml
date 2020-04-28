@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rmysj.api.api.mobile.dao.MobileAppversionMapper" >
+  <resultMap id="BaseResultMap" type="org.rmysj.api.api.mobile.domain.MobileAppversion" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="app_type" property="appType" jdbcType="CHAR" />
+    <result column="version_no" property="versionNo" jdbcType="VARCHAR" />
+    <result column="version_wgtu" property="versionWgtu" jdbcType="VARCHAR" />
+    <result column="latest" property="latest" jdbcType="CHAR" />
+    <result column="upgrade_type" property="upgradeType" jdbcType="CHAR" />
+    <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
+    <result column="download_url" property="downloadUrl" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="DECIMAL" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, app_type, version_no, version_wgtu, latest, upgrade_type, release_date, download_url, size,
+    create_date, modify_date, remark, create_by, update_date, update_by, remarks, del_flag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.rmysj.api.api.mobile.domain.MobileAppversionCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mobile_appversion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mobile_appversion
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mobile_appversion
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.rmysj.api.api.mobile.domain.MobileAppversionCriteria" >
+    delete from mobile_appversion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.rmysj.api.api.mobile.domain.MobileAppversion" >
+    insert into mobile_appversion (id, app_type, version_no, 
+      version_wgtu, latest, upgrade_type, 
+      release_date, download_url, create_date,
+      modify_date, remark, create_by, 
+      update_date, update_by, remarks, 
+      del_flag)
+    values (#{id,jdbcType=VARCHAR}, #{appType,jdbcType=CHAR}, #{versionNo,jdbcType=VARCHAR}, 
+      #{versionWgtu,jdbcType=VARCHAR}, #{latest,jdbcType=CHAR}, #{upgradeType,jdbcType=CHAR}, 
+      #{releaseDate,jdbcType=TIMESTAMP}, #{downloadUrl,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifyDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.rmysj.api.api.mobile.domain.MobileAppversion" >
+    insert into mobile_appversion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appType != null" >
+        app_type,
+      </if>
+      <if test="versionNo != null" >
+        version_no,
+      </if>
+      <if test="versionWgtu != null" >
+        version_wgtu,
+      </if>
+      <if test="latest != null" >
+        latest,
+      </if>
+      <if test="upgradeType != null" >
+        upgrade_type,
+      </if>
+      <if test="releaseDate != null" >
+        release_date,
+      </if>
+      <if test="downloadUrl != null" >
+        download_url,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null" >
+        #{appType,jdbcType=CHAR},
+      </if>
+      <if test="versionNo != null" >
+        #{versionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="versionWgtu != null" >
+        #{versionWgtu,jdbcType=VARCHAR},
+      </if>
+      <if test="latest != null" >
+        #{latest,jdbcType=CHAR},
+      </if>
+      <if test="upgradeType != null" >
+        #{upgradeType,jdbcType=CHAR},
+      </if>
+      <if test="releaseDate != null" >
+        #{releaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downloadUrl != null" >
+        #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.rmysj.api.api.mobile.domain.MobileAppversionCriteria" resultType="java.lang.Integer" >
+    select count(*) from mobile_appversion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update mobile_appversion
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appType != null" >
+        app_type = #{record.appType,jdbcType=CHAR},
+      </if>
+      <if test="record.versionNo != null" >
+        version_no = #{record.versionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.versionWgtu != null" >
+        version_wgtu = #{record.versionWgtu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latest != null" >
+        latest = #{record.latest,jdbcType=CHAR},
+      </if>
+      <if test="record.upgradeType != null" >
+        upgrade_type = #{record.upgradeType,jdbcType=CHAR},
+      </if>
+      <if test="record.releaseDate != null" >
+        release_date = #{record.releaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.downloadUrl != null" >
+        download_url = #{record.downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyDate != null" >
+        modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null" >
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null" >
+        del_flag = #{record.delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update mobile_appversion
+    set id = #{record.id,jdbcType=VARCHAR},
+      app_type = #{record.appType,jdbcType=CHAR},
+      version_no = #{record.versionNo,jdbcType=VARCHAR},
+      version_wgtu = #{record.versionWgtu,jdbcType=VARCHAR},
+      latest = #{record.latest,jdbcType=CHAR},
+      upgrade_type = #{record.upgradeType,jdbcType=CHAR},
+      release_date = #{record.releaseDate,jdbcType=TIMESTAMP},
+      download_url = #{record.downloadUrl,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.rmysj.api.api.mobile.domain.MobileAppversion" >
+    update mobile_appversion
+    <set >
+      <if test="appType != null" >
+        app_type = #{appType,jdbcType=CHAR},
+      </if>
+      <if test="versionNo != null" >
+        version_no = #{versionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="versionWgtu != null" >
+        version_wgtu = #{versionWgtu,jdbcType=VARCHAR},
+      </if>
+      <if test="latest != null" >
+        latest = #{latest,jdbcType=CHAR},
+      </if>
+      <if test="upgradeType != null" >
+        upgrade_type = #{upgradeType,jdbcType=CHAR},
+      </if>
+      <if test="releaseDate != null" >
+        release_date = #{releaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downloadUrl != null" >
+        download_url = #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.rmysj.api.api.mobile.domain.MobileAppversion" >
+    update mobile_appversion
+    set app_type = #{appType,jdbcType=CHAR},
+      version_no = #{versionNo,jdbcType=VARCHAR},
+      version_wgtu = #{versionWgtu,jdbcType=VARCHAR},
+      latest = #{latest,jdbcType=CHAR},
+      upgrade_type = #{upgradeType,jdbcType=CHAR},
+      release_date = #{releaseDate,jdbcType=TIMESTAMP},
+      download_url = #{downloadUrl,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

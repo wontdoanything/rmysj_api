@@ -1,0 +1,1 @@
+java -Xms4098m -Xmx6144m -jar rmysj_api-0.0.1-Alpha.jar >/dev/null 2>&1 &
