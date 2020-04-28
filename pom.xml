@@ -55,7 +55,7 @@
         <!-- apach code包-->
         <commons-codec.version>1.10</commons-codec.version>
         <!--netty.version-->
-        <netty.version>4.1.10.Final</netty.version>
+        <netty.version>4.1.49.Final</netty.version>
         <os.detected.classifier>linux-x86_64</os.detected.classifier>
         <!--dom4j-->
         <dom4j.version>1.6.1</dom4j.version>
@@ -300,12 +300,12 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.4</version>
+            <version>1.2.25</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.3.5</version>
+            <version>4.3.6</version>
         </dependency>
         <dependency>
             <groupId>dom4j</groupId>
