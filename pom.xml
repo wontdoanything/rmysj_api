@@ -13,7 +13,7 @@
     Snapshot:用于依赖库版本，代表不稳定、尚处于开发中的版本
     PRE：技术预览版 用M1，M2，M3标注阶段，一般M3版本比较稳定的预览版本
     -->
-    <version>0.0.1-Alpha</version>
+    <version>1.0-Alpha</version>
     <packaging>jar</packaging>
 
 
