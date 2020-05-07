@@ -59,6 +59,9 @@
         <os.detected.classifier>linux-x86_64</os.detected.classifier>
         <!--dom4j-->
         <dom4j.version>1.6.1</dom4j.version>
+        <!--ibeetl-->
+        <ibeetl.version>2.9.6</ibeetl.version>
+
     </properties>
 
     <!-- 设定主仓库，按设定顺序进行查找。 -->
@@ -512,6 +515,12 @@
 		    <version>0.10.5</version>
 		    <scope>runtime</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>com.ibeetl</groupId>
+            <artifactId>beetl</artifactId>
+            <version>${ibeetl.version}</version>
+        </dependency>
 		
 		<!-- springboot热部署工具 目前有错误会多重加载
 		<dependency>
