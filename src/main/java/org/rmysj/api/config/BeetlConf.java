@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternUtils;
+
+import java.io.IOException;
 
 @Configuration
 public class BeetlConf {
@@ -23,14 +28,17 @@ public class BeetlConf {
     @Value("${beetl.order}")
     int beetl_order;
 
+    @Value("${beetl.config}")
+    String beetl_config;
+
     @Bean(initMethod = "init", name = "beetlConfig")
     public BeetlGroupUtilConfiguration getBeetlGroupUtilConfiguration() {
         BeetlGroupUtilConfiguration beetlGroupUtilConfiguration = new BeetlGroupUtilConfiguration();
         ClasspathResourceLoader classpathResourceLoader = new ClasspathResourceLoader();
         beetlGroupUtilConfiguration.setResourceLoader(classpathResourceLoader);
-
+        ResourcePatternResolver patternResolver = ResourcePatternUtils.getResourcePatternResolver(new DefaultResourceLoader());
         //读取配置文件信息
-//        beetlGroupUtilConfiguration.setConfigFileResource(patternResolver.getResource("classpath:beetl.properties"));
+        beetlGroupUtilConfiguration.setConfigFileResource(patternResolver.getResource(beetl_config));
         return beetlGroupUtilConfiguration;
     }
 
