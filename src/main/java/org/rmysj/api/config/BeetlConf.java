@@ -16,12 +16,6 @@ import java.io.IOException;
 @Configuration
 public class BeetlConf {
 
-    @Value("${beetl.root}")
-    String templatesPath;//模板跟目录
-
-    @Value("${beetl.prefix}")
-    String beetl_prefix;
-
     @Value("${beetl.suffix}")
     String beetl_suffix;
 
@@ -45,7 +39,6 @@ public class BeetlConf {
     @Bean(name = "beetlViewResolver")
     public BeetlSpringViewResolver getBeetlSpringViewResolver(@Qualifier("beetlConfig") BeetlGroupUtilConfiguration beetlGroupUtilConfiguration) {
         BeetlSpringViewResolver beetlSpringViewResolver = new BeetlSpringViewResolver();
-        beetlSpringViewResolver.setPrefix(beetl_prefix);
         beetlSpringViewResolver.setSuffix(beetl_suffix);
         beetlSpringViewResolver.setContentType("text/html;charset=UTF-8");
         beetlSpringViewResolver.setOrder(beetl_order);

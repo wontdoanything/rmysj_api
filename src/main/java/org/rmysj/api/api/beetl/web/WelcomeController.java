@@ -10,6 +10,7 @@ import java.util.Map;
 public class WelcomeController {
     @RequestMapping("/")
     public String welcome(Map<String, Object> model) {
+        model.put("title", "Beetl welcome to U!!!");
         model.put("time", new Date());
         model.put("message", "Hello Spring Boot Beetl!");
         return "welcome";
