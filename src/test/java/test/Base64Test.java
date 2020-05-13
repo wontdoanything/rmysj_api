@@ -34,8 +34,6 @@ public class Base64Test {
 
     /**
      * 将base64字符解码保存文件
-     * @param base64Code
-     * @param targetPath
      * @throws Exception
      */
     @Test
@@ -43,7 +41,7 @@ public class Base64Test {
             throws Exception {
         String base64Code = "M5SiXu9M9p+addKuOCQ3vje2NDimtUQblW/DsH4enmQnsyhRM3cLCDCGJLCDWpHw8MrAhkRgShBQtZYTLTd2dPefNaFngJJwXfHhejrrQrPOIMKmQFcMeNsIjfZ8FTwVDRvmXZzfHRHVr5UEFzEKpyIMZusTdREywkEObz03FtDjefHjz9wSw5Fxvb3MormZqL3ToUhiJ6uo3GNN3FFGmKvKCa0ak/Br7TKQgwBEK4GRGsNcaB0y9W9uXyukgfc2CgaFu1hf1ntE0dGkSH1l6i02iu9k/sQ+39gbipTYxh+rrCovoyBXdBOqoiYnxzXWbThP2/NdcrgvUDsd6/mbjAJDnaDt5cKiPdBqVpRCDVW68g/m6tlJE7jpl8r6UXoMgm4rAghdglfM1w==";
         byte[] buffer = new BASE64Decoder().decodeBuffer(base64Code);
-        String targetPath = "/Users/rmysj/Downloads/aa";
+        String targetPath = "aa";
         FileOutputStream out = new FileOutputStream(targetPath);
         out.write(buffer);
         out.close();
