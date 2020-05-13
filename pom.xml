@@ -66,9 +66,14 @@
     <!-- 设定主仓库，按设定顺序进行查找。 -->
     <repositories>
         <repository>
-            <id>gzs-snapshots</id>
-            <name>my-gzs-repo-snapshots</name>
-            <url>https://repo.rdc.aliyun.com/repository/78495-snapshot-n4Qds2</url>
+            <id>aliyun-central</id>
+            <name>aliyun-central</name>
+            <url>https://maven.aliyun.com/repository/central</url>
+        </repository>
+        <repository>
+            <id>centit-releases</id>
+            <name>centit-releases</name>
+            <url>http://develop.centit.com/nexus/content/repositories/centit-releases/</url>
         </repository>
     </repositories>
 
@@ -323,9 +328,9 @@
             <version>1.8.4</version>
         </dependency>
         <dependency>
-            <groupId>com.swetake.util</groupId>
-            <artifactId>Qrcode</artifactId>
-            <version>${qrcode.version}</version>
+            <groupId>QRCode</groupId>
+            <artifactId>QRCode_swetake</artifactId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
