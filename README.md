@@ -15,7 +15,7 @@ JDK 1.8 基于maven3构建
 底层容器：springboot 1.5.22 稳定版
 消息推送：mpush 0.8开源版
 集成技术：junit、线程池、redis、定时任务、netty、mybatis-generator以及各种收集的简易工具类
-集成亮点功能：redis多线程模糊删除、文件分块上传、客户端版本对比升级、redis异步锁，并发抢购功能
+集成亮点功能：xss攻击过滤、redis多线程模糊删除、文件分块上传、客户端版本对比升级、redis异步锁，并发抢购功能
 
 
 #### 使用说明
