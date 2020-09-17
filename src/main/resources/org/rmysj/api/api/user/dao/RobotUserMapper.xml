@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rmysj.api.api.user.dao.RobotUserMapper" >
+  <resultMap id="BaseResultMap" type="org.rmysj.api.api.user.domain.RobotUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_appell" property="userAppell" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="CHAR" />
+    <result column="user_card" property="userCard" jdbcType="VARCHAR" />
+    <result column="user_face" property="userFace" jdbcType="VARCHAR" />
+    <result column="user_age" property="userAge" jdbcType="DECIMAL" />
+    <result column="user_attractive" property="userAttractive" jdbcType="DECIMAL" />
+    <result column="eye_glass" property="eyeGlass" jdbcType="CHAR" />
+    <result column="sun_glass" property="sunGlass" jdbcType="CHAR" />
+    <result column="smile" property="smile" jdbcType="DECIMAL" />
+    <result column="emotion" property="emotion" jdbcType="CHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_name, user_appell, user_sex, user_card, user_face, user_age, user_attractive,
+    eye_glass, sun_glass, smile, emotion, create_by, create_date, update_by, update_date,
+    remarks, del_flag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.rmysj.api.api.user.domain.RobotUserCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from defender_mobileuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from defender_mobileuser
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from defender_mobileuser
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.rmysj.api.api.user.domain.RobotUserCriteria" >
+    delete from defender_mobileuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.rmysj.api.api.user.domain.RobotUser" >
+    insert into defender_mobileuser (id, user_name, user_appell,
+      user_sex, user_card, user_face,
+      user_age, user_attractive, eye_glass,
+      sun_glass, smile, emotion,
+      create_by, create_date, update_by,
+      update_date, remarks, del_flag
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userAppell,jdbcType=VARCHAR},
+      #{userSex,jdbcType=CHAR}, #{userCard,jdbcType=VARCHAR}, #{userFace,jdbcType=VARCHAR},
+      #{userAge,jdbcType=DECIMAL}, #{userAttractive,jdbcType=DECIMAL}, #{eyeGlass,jdbcType=CHAR},
+      #{sunGlass,jdbcType=CHAR}, #{smile,jdbcType=DECIMAL}, #{emotion,jdbcType=CHAR},
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR},
+      #{updateDate,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.rmysj.api.api.user.domain.RobotUser" >
+    insert into defender_mobileuser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userAppell != null" >
+        user_appell,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="userCard != null" >
+        user_card,
+      </if>
+      <if test="userFace != null" >
+        user_face,
+      </if>
+      <if test="userAge != null" >
+        user_age,
+      </if>
+      <if test="userAttractive != null" >
+        user_attractive,
+      </if>
+      <if test="eyeGlass != null" >
+        eye_glass,
+      </if>
+      <if test="sunGlass != null" >
+        sun_glass,
+      </if>
+      <if test="smile != null" >
+        smile,
+      </if>
+      <if test="emotion != null" >
+        emotion,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAppell != null" >
+        #{userAppell,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=CHAR},
+      </if>
+      <if test="userCard != null" >
+        #{userCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userFace != null" >
+        #{userFace,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        #{userAge,jdbcType=DECIMAL},
+      </if>
+      <if test="userAttractive != null" >
+        #{userAttractive,jdbcType=DECIMAL},
+      </if>
+      <if test="eyeGlass != null" >
+        #{eyeGlass,jdbcType=CHAR},
+      </if>
+      <if test="sunGlass != null" >
+        #{sunGlass,jdbcType=CHAR},
+      </if>
+      <if test="smile != null" >
+        #{smile,jdbcType=DECIMAL},
+      </if>
+      <if test="emotion != null" >
+        #{emotion,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.rmysj.api.api.user.domain.RobotUserCriteria" resultType="java.lang.Integer" >
+    select count(*) from defender_mobileuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update.defender.user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userAppell != null" >
+        user_appell = #{record.userAppell,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userSex != null" >
+        user_sex = #{record.userSex,jdbcType=CHAR},
+      </if>
+      <if test="record.userCard != null" >
+        user_card = #{record.userCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userFace != null" >
+        user_face = #{record.userFace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userAge != null" >
+        user_age = #{record.userAge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.userAttractive != null" >
+        user_attractive = #{record.userAttractive,jdbcType=DECIMAL},
+      </if>
+      <if test="record.eyeGlass != null" >
+        eye_glass = #{record.eyeGlass,jdbcType=CHAR},
+      </if>
+      <if test="record.sunGlass != null" >
+        sun_glass = #{record.sunGlass,jdbcType=CHAR},
+      </if>
+      <if test="record.smile != null" >
+        smile = #{record.smile,jdbcType=DECIMAL},
+      </if>
+      <if test="record.emotion != null" >
+        emotion = #{record.emotion,jdbcType=CHAR},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null" >
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null" >
+        del_flag = #{record.delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update defender_mobileuser
+    set id = #{record.id,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      user_appell = #{record.userAppell,jdbcType=VARCHAR},
+      user_sex = #{record.userSex,jdbcType=CHAR},
+      user_card = #{record.userCard,jdbcType=VARCHAR},
+      user_face = #{record.userFace,jdbcType=VARCHAR},
+      user_age = #{record.userAge,jdbcType=DECIMAL},
+      user_attractive = #{record.userAttractive,jdbcType=DECIMAL},
+      eye_glass = #{record.eyeGlass,jdbcType=CHAR},
+      sun_glass = #{record.sunGlass,jdbcType=CHAR},
+      smile = #{record.smile,jdbcType=DECIMAL},
+      emotion = #{record.emotion,jdbcType=CHAR},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.rmysj.api.api.user.domain.RobotUser" >
+    update defender_mobileuser
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAppell != null" >
+        user_appell = #{userAppell,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=CHAR},
+      </if>
+      <if test="userCard != null" >
+        user_card = #{userCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userFace != null" >
+        user_face = #{userFace,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        user_age = #{userAge,jdbcType=DECIMAL},
+      </if>
+      <if test="userAttractive != null" >
+        user_attractive = #{userAttractive,jdbcType=DECIMAL},
+      </if>
+      <if test="eyeGlass != null" >
+        eye_glass = #{eyeGlass,jdbcType=CHAR},
+      </if>
+      <if test="sunGlass != null" >
+        sun_glass = #{sunGlass,jdbcType=CHAR},
+      </if>
+      <if test="smile != null" >
+        smile = #{smile,jdbcType=DECIMAL},
+      </if>
+      <if test="emotion != null" >
+        emotion = #{emotion,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.rmysj.api.api.user.domain.RobotUser" >
+    update defender_mobileuser
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_appell = #{userAppell,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=CHAR},
+      user_card = #{userCard,jdbcType=VARCHAR},
+      user_face = #{userFace,jdbcType=VARCHAR},
+      user_age = #{userAge,jdbcType=DECIMAL},
+      user_attractive = #{userAttractive,jdbcType=DECIMAL},
+      eye_glass = #{eyeGlass,jdbcType=CHAR},
+      sun_glass = #{sunGlass,jdbcType=CHAR},
+      smile = #{smile,jdbcType=DECIMAL},
+      emotion = #{emotion,jdbcType=CHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

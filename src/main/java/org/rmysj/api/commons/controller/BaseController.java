@@ -23,37 +23,38 @@ public  class BaseController {
 	//protected org.slf4j.Logger log = LoggerFactory.getLogger(getClass());
 
 	protected Logger log = Logger.getLogger(getClass());
-	
+
 	public static String STATUS = "result_code";
 
 	public static String SUCCESS = "success";
-	
+
 	public static String OK = "200";
-	
+
 	public static String CREATED = "201";
-	
+
 	public static String AUTHFAIL = "202";
-	
+
 	public static String WARN = "900";
-	
+
 	public static String MONEY_LESS = "909";
-	
+
 	public static String POINT_LESS = "9098";
-	
+
 	public static String ACCOUNT_NO_ACTIVE = "903";
-	
+
 	public static String DESC = "result_desc";
-	
+
 	public static String NO_STATE="0";
-	
+
 	public static String OK_STATE="1";
 
 	public static String RESULTCODE_OK = "0";
 
 	public static String RESULTCODE_WARN = "1";
+	public static final String NOT_FOUND = "404";
 
 
-	
+
 
 	public JSONPObject callbackJSONP(HttpServletRequest request,JSONObject json) {
 		String jsoncallback = request.getParameter("jsoncallback");
@@ -63,7 +64,7 @@ public  class BaseController {
 		}
 		return null;
 	}
-	
+
 	public static String getStackTraceAsString(Throwable e) {
 		if (e == null){
 			return "";
@@ -72,7 +73,7 @@ public  class BaseController {
 		e.printStackTrace(new PrintWriter(stringWriter));
 		return stringWriter.toString();
 	}
-	
+
 	/**
 	 * 获取当前用户的关键信息
 	 * @param request
@@ -89,7 +90,7 @@ public  class BaseController {
 		UserKeys uk = (UserKeys)request.getAttribute("userKeys");
 		return uk;
 	}
-	
+
 	/**
 	 * 判断用户合法性
 	 */
@@ -98,7 +99,7 @@ public  class BaseController {
 
 		return result;
 	}
-	
+
 	/**
 	 * 检测当前token是否需要刷新，重置code
 	 * @param map

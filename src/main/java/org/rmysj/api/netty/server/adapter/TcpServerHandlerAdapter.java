@@ -1,6 +1,5 @@
 package org.rmysj.api.netty.server.adapter;
 
-import org.rmysj.api.api.cmsDict.service.CmsDictService;
 import org.rmysj.api.commons.service.redis.IRedisService;
 import org.rmysj.api.config.Glob;
 import org.rmysj.api.netty.rpc.entity.Message;
@@ -28,8 +27,6 @@ public class TcpServerHandlerAdapter extends SimpleChannelInboundHandler<Message
     private IRedisService iRedisService;
 
 
-    @Autowired
-    private CmsDictService cmsDictService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TcpServerHandlerAdapter.class);
 

@@ -33,11 +33,10 @@ public class Application extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         System.out.println("------------------------");
-        System.setProperty("spring.devtools.restart.enabled", "false");
+//        System.setProperty("spring.devtools.restart.enabled", "false");
         // 初始化log4j
-        //log4jPath = Application.class.getClassLoader().getResource("").getPath() + "log4j.properties";
+//        log4jPath = Application.class.getClassLoader().getResource("").getPath() + "log4j.properties";
         PropertyConfigurator.configure(log4jPath);
-
         return application.sources(Application.class);
     }
 
@@ -57,7 +56,8 @@ public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) throws Exception {
         System.out.println("------------------------");
         //初始化log4j
-        //String log4jPath = Application.class.getClassLoader().getResource("").getPath()+"log4j.properties";
+//        System.setProperty("spring.devtools.restart.enabled", "false");
+//        String log4jPath = Application.class.getClassLoader().getResource("").getPath()+"log4j.properties";
         PropertyConfigurator.configure(log4jPath);
 
         SpringApplication.run(Application.class, args);
