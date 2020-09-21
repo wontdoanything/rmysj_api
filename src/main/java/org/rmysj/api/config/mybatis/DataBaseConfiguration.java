@@ -3,14 +3,12 @@ package org.rmysj.api.config.mybatis;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.log4j.Logger;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
-import org.springframework.boot.bind.RelaxedPropertyResolver;
+import org.mybatis.spring.annotation.MapperScan;import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -34,7 +32,7 @@ public class DataBaseConfiguration implements EnvironmentAware {
 		this.propertyResolver = new RelaxedPropertyResolver(env, "jdbc.");
 	}
 
-	@Bean(name="dataSource",destroyMethod = "shutdown")
+	@Bean("dataSource")
 	public DataSource dataSource() {
 		log.debug("Configruing DataSource");
 		if (propertyResolver.getProperty("url") == null
