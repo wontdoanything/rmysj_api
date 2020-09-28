@@ -4,7 +4,10 @@
 package org.rmysj.api.commons.util;
 
 import com.google.common.collect.Lists;
+import com.mpush.tools.crypto.MD5Utils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -21,6 +24,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     private static final char SEPARATOR = '_';
     private static final String CHARSET_NAME = "UTF-8";
+    private static int sequence = 0;
 
     /**
      * 转换为字节数组
@@ -363,6 +367,51 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	public static boolean isNull(Object object)
 	{
 		return object == null;
+	}
+
+	public static boolean isNotBlank(Object o) {
+		if(o instanceof String) {
+			o = trim((String)o);
+		}
+		if(o != null && !"".equals(o)) {
+			return true;
+		}
+		return false;
+	}
+	public static boolean isNotBlankAndEmpty(Object o) {
+		if(o instanceof String) {
+			o = trim((String)o);
+		}
+		if(o != null && !"".equals(o) && !"[]".equals(0)) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 获取文件名的后缀
+	 *
+	 * @param file 表单文件
+	 * @return 后缀名
+	 */
+	public static String getExtension(MultipartFile file)
+	{
+		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+		if (StringUtils.isEmpty(extension))
+		{
+			extension = MimeTypeUtils.getExtension(file.getContentType());
+		}
+		return extension;
+	}
+
+	/**
+	 * 编码文件名
+	 */
+	public static String encodingFilename(String fileName)
+	{
+		fileName = fileName.replace("_", " ");
+		fileName = MD5Utils.sha1(fileName + System.nanoTime() + sequence++);
+		return fileName;
 	}
 
 }
