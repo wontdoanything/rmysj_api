@@ -65,7 +65,7 @@
         <!--minio-->
         <minio.version>7.1.2</minio.version>
         <fastjson.version>1.2.73</fastjson.version>
-
+        <spatial4j.version>0.7</spatial4j.version>
     </properties>
 
     <!-- 设定主仓库，按设定顺序进行查找。 -->
@@ -595,6 +595,13 @@
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
             <version>${minio.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.locationtech.spatial4j</groupId>
+            <artifactId>spatial4j</artifactId>
+            <version>${spatial4j.version}</version>
+            <scope>test</scope>
         </dependency>
 
 
