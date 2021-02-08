@@ -54,7 +54,7 @@
         <!-- apach code包-->
         <commons-codec.version>1.10</commons-codec.version>
         <!--netty.version-->
-        <netty.version>4.1.49.Final</netty.version>
+        <netty.version>4.1.59.Final</netty.version>
         <os.detected.classifier>linux-x86_64</os.detected.classifier>
         <!--dom4j-->
         <dom4j.version>2.1.3</dom4j.version>
